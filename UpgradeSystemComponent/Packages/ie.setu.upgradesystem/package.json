@@ -1,0 +1,7 @@
+{
+    "name": "ie.setu.upgradesystem",
+    "version": "1.0.0",
+    "displayName": "UpgradeSystem",
+    "description": "A Component for adding Upgrade Systems",
+    "unity": "2022.3"
+}
