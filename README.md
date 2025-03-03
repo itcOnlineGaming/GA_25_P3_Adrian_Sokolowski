@@ -15,6 +15,8 @@ Easily integrate a fully customizable **upgrade system** into your game with thi
 
 ## Installation
 Work in Progress
+https://github.com/itcOnlineGaming/GA_25_P3_Adrian_Sokolowski.git?path=/UpgradeSystemComponent/Packages/ie.setu.upgradesystem#(CurrentTagVersion)
+
 1. Import the package into your project
 2. Drag the **UpgradePanel** prefab into your scene
 3. Link the **Currency Manager** to your player or economy system
