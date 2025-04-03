@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoneyBagController : MonoBehaviour
 {
-    public float MoneyBagValue = 100.0f;
+    public int MoneyBagValue = 100;
 
     public float moveSpeed = 1f; 
     public float lifeTime = 2f;
@@ -12,7 +12,7 @@ public class MoneyBagController : MonoBehaviour
 
     void Start()
     {
-        EconomicSystemController.Instance.AddEconomicValue(MoneyBagValue);
+        EventManager.Instance.RaiseEvent("AddValue", MoneyBagValue);
 
         timer = lifeTime;
     }

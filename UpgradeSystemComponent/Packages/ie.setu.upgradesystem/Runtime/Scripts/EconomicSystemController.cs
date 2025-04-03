@@ -15,7 +15,10 @@ public class EconomicSystemController : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
+            EventManager.Instance.Subscribe("AddValue", AddEconomicValue);
             Instance = this;
+        }
         else
             Destroy(gameObject);
     }
@@ -25,7 +28,7 @@ public class EconomicSystemController : MonoBehaviour
         CurrentEconomicValueText.text = CurrentEconomicValue.ToString();
     }
 
-    public void AddEconomicValue(float value)
+    public void AddEconomicValue(int value)
     {
         CurrentEconomicValue += value;
 
@@ -37,7 +40,7 @@ public class EconomicSystemController : MonoBehaviour
         CurrentEconomicValueText.text = CurrentEconomicValue.ToString();
     }
 
-    public bool SpendEconomicValue(float value)
+    public bool SpendEconomicValue(int value)
     {
         if(value >= CurrentEconomicValue)
         {

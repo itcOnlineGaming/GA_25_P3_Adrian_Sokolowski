@@ -292,11 +292,21 @@
       },
       "url": "https://packages.unity.com"
     },
+    "ie.setu.eventmanager": {
+      "version": "https://github.com/itcOnlineGaming/EventManager.git?path=/Packages/ie.setu.eventManager#v1.0.2",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2f8c82a32f8a4ca5f332d42b4fd0779e25165c9b"
+    },
     "ie.setu.upgradesystem": {
       "version": "file:ie.setu.upgradesystem",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "com.unity.textmeshpro": "3.0.9",
+        "ie.setu.eventmanager": "https://github.com/itcOnlineGaming/EventManager.git?path=/Packages/ie.setu.eventManager#v1.0.2"
+      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

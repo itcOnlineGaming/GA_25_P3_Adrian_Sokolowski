@@ -2,7 +2,8 @@
     "name": "UpgradeSystem",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:e59b2bc29a08b4cc2845f2293b9556c6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

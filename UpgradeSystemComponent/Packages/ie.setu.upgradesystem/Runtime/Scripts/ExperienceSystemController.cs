@@ -8,6 +8,7 @@ public class ExperienceSystemController : MonoBehaviour
 {
     // Single Instance of the System to use in other Scripts
     public static ExperienceSystemController Instance { get; private set; }
+
     // Add How Many Possible Levels Are There
     public int MaxLevel = 10;
 
@@ -32,7 +33,10 @@ public class ExperienceSystemController : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
+            EventManager.Instance.Subscribe("AddExperience", AddExperience);
             Instance = this;
+        }
         else
             Destroy(gameObject);
     }
@@ -59,7 +63,7 @@ public class ExperienceSystemController : MonoBehaviour
         
     }
 
-    public void AddExperience(float experience)
+    public void AddExperience(int experience)
     {
         if(CurrentLevel >= MaxLevel)
         {

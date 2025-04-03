@@ -21,8 +21,7 @@ public class GreaterExperienceBag : MonoBehaviour
             newText.transform.position = screenPosition;
             // Change the text to the Experienced gain Value
             newText.GetComponent<TMP_Text>().text = ExpereinceAmountFromBag.ToString();
-            ExperienceSystemController.Instance.AddExperience(ExpereinceAmountFromBag);
-
+            EventManager.Instance.RaiseEvent("AddExperience", ExpereinceAmountFromBag);
         }
     }
 }
