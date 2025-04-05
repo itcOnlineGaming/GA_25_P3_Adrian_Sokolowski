@@ -16,6 +16,8 @@ public class UpgradeData
     public Texture EmptyUpgradeItemIcon;
     public UnityEvent onBuy;
     public UnityEvent onSell;
+    public int UpgradeCost;
+    public int MaxUpgradeAmount;
 }
 
 public class UpgradeSystemController : MonoBehaviour
@@ -23,6 +25,9 @@ public class UpgradeSystemController : MonoBehaviour
     [Header("Setup")]
     public RectTransform upgradeHolder;
     public GameObject upgradeObjectPrefab;
+    public bool UsingExperienceSystem = true;
+    public bool UsingEconomicSystem = false;
+    public MonoBehaviour requirementCheckerBehaviour;
 
     [Header("Upgrades")]
     public List<UpgradeData> upgradeDataList = new List<UpgradeData>();
@@ -41,13 +46,30 @@ public class UpgradeSystemController : MonoBehaviour
             GameObject upgradeGO = Instantiate(upgradeObjectPrefab, upgradeHolder);
             UpgradeController upgrade = upgradeGO.GetComponent<UpgradeController>();
 
+            if (requirementCheckerBehaviour == null)
+            {
+                MonoBehaviour[] behaviours = FindObjectsOfType<MonoBehaviour>();
+
+                foreach (var behaviour in behaviours)
+                {
+                    if (behaviour is IUpgradeRequirementChecker)
+                    {
+                        requirementCheckerBehaviour = behaviour;
+                        break;
+                    }
+                }
+            }
+            upgrade.requirementCheckerBehaviour = requirementCheckerBehaviour;
+
             // Link the buy/sell from data
-            if(data.onBuy != null)
+            if (data.onBuy != null)
                 upgrade.onBuyUpgrade = data.onBuy;
             if (data.onSell != null)
                 upgrade.onSellUpgrade = data.onSell;
 
-                upgrade.hideSelling = data.HideSelling;
+            upgrade.hideSelling = data.HideSelling;
+            upgrade.UpgradeCost = data.UpgradeCost;
+            upgrade.MaxUpgradeAmount = data.MaxUpgradeAmount;
 
             if (data.UpgradeIcon != null)
                 upgrade.UpgradeIconRawImage.texture = data.UpgradeIcon;

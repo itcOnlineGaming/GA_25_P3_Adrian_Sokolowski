@@ -16,20 +16,36 @@ public class UpgradeController : MonoBehaviour
     public Image BuyingIconRawImage;
     public Texture FullUpgradeItemTexture;
     public Texture EmptyUpgradeItemTexture;
+    public int UpgradeCost = 1;
+    public int MaxUpgradeAmount = 1;
 
     public Button buyingButton;
     public Button sellingButton;
 
+    public MonoBehaviour requirementCheckerBehaviour; 
+    private IUpgradeRequirementChecker requirementChecker;
+
     private void Start()
     {
-        if(hideSelling)
+        if (requirementCheckerBehaviour != null)  // <<< not requirementChecker
+        {
+            requirementChecker = requirementCheckerBehaviour as IUpgradeRequirementChecker;
+            if (requirementChecker == null)
+            {
+                Debug.LogError("Assigned object does not implement IUpgradeRequirementChecker!");
+            }
+        }
+
+        if (hideSelling)
         {
             sellingButton.gameObject.SetActive(false);
         }
         upgrades.Clear();
+        
         GetComponent<UpgradeObjectSpawner>().fullItem = FullUpgradeItemTexture;
         GetComponent<UpgradeObjectSpawner>().emptyItem = EmptyUpgradeItemTexture;
-        foreach(var upgrade in upgrades)
+        GetComponent<UpgradeObjectSpawner>().totalUpgrades = MaxUpgradeAmount;
+        foreach (var upgrade in upgrades)
         {
             upgrade.emptyTexture = EmptyUpgradeItemTexture;
             upgrade.fullTexture = FullUpgradeItemTexture;
@@ -39,11 +55,25 @@ public class UpgradeController : MonoBehaviour
 
     public void BuyUpgrade()
     {
+        Debug.Log(requirementChecker);
+
+        if (requirementChecker != null)
+        {
+            Debug.Log("Buy");
+            if (!requirementChecker.CanBuyOrSellUpgrade(UpgradeCost, true))
+            {
+                Debug.Log("Cannot buy upgrade: requirements not met.");
+                return;
+            }
+        }
+
         foreach (var upgrade in upgrades)
         {
             if (!upgrade.isBought)
             {
                 upgrade.SetFull();
+                requirementChecker?.OnUpgradeBought(UpgradeCost);
+
                 onBuyUpgrade?.Invoke();
                 break;
             }
@@ -52,11 +82,23 @@ public class UpgradeController : MonoBehaviour
 
     public void SellUpgrade()
     {
+        Debug.Log("Sell");
+        if (requirementChecker != null)
+        {
+            if (!requirementChecker.CanBuyOrSellUpgrade(UpgradeCost, false))
+            {
+                Debug.Log("Cannot buy upgrade: requirements not met.");
+                return;
+            }
+        }
+
         for (int i = upgrades.Count - 1; i >= 0; i--)
         {
             if (upgrades[i].isBought)
             {
                 upgrades[i].SetEmpty();
+                requirementChecker?.OnUpgradeSold(UpgradeCost);
+
                 onSellUpgrade?.Invoke();
                 break;
             }

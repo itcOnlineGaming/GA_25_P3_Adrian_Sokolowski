@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExperienceSystemController : MonoBehaviour
+public class ExperienceSystemController : MonoBehaviour, IUpgradeRequirementChecker
 {
     // Single Instance of the System to use in other Scripts
     public static ExperienceSystemController Instance { get; private set; }
@@ -13,7 +14,7 @@ public class ExperienceSystemController : MonoBehaviour
     public int MaxLevel = 10;
 
     private int CurrentLevel = 1;
-
+    private int levelsUsed = 1;
     public Slider ExperienceSlider;
     
     public TMP_Text LevelText;
@@ -107,5 +108,38 @@ public class ExperienceSystemController : MonoBehaviour
         float experiencePercentage = (Experience / CurrentExperienceNeeded) * 100f;
         ExperienceSlider.SetValueWithoutNotify(experiencePercentage);
 
+    }
+    public bool CanBuyOrSellUpgrade(int levelCost, bool isBuying)
+    {
+        if (isBuying)
+        {
+            // When buying, you must NOT exceed CurrentLevel
+            if (levelsUsed + levelCost > CurrentLevel)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            // When selling, you must NOT go below zero
+            if (levelsUsed - levelCost < 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void OnUpgradeBought(int levelCost)
+    {
+        levelsUsed += levelCost;
+        Debug.Log(levelsUsed);
+    }
+
+    public void OnUpgradeSold(int levelCost)
+    {
+        levelsUsed -= levelCost;
+        Debug.Log(levelsUsed);
     }
 }
