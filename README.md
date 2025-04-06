@@ -1,4 +1,7 @@
-**Upgrade System**  
+Link To Google Doc of Guide
+https://docs.google.com/document/d/1fZhn5KsKNT8e6PizA5U6HRcDtIpw_rSW6nQ5NydDQGQ/edit?usp=sharing
+
+**Upgrade System**
 This Unity package allows for the addition of a modular and customizable Upgrade System with example Economic and Experience Systems to accompany it.
 
 #  **Setup the component**
