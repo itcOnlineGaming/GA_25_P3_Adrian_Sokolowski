@@ -1,16 +1,44 @@
-Link To Google Doc of Guide
+**Link To Google Doc of Guide**
 https://docs.google.com/document/d/1fZhn5KsKNT8e6PizA5U6HRcDtIpw_rSW6nQ5NydDQGQ/edit?usp=sharing
 
-**Upgrade System**
+**Upgrade System**  
 This Unity package allows for the addition of a modular and customizable Upgrade System with example Economic and Experience Systems to accompany it.
 
-#  **Setup the component**
+[Setup the component](#setup-the-component)
+
+[Quick Start](#quick-start)
+
+[Using the component](#using-the-component)
+
+[Upgrade System Setup](#upgrade-system-setup)
+
+[Creating Upgrade Objects](#creating-upgrade-objects)
+
+[Upgrade Panel](#upgrade-panel)
+
+[Upgrade Object](#upgrade-object)
+
+[Upgrade System using Experience System](#upgrade-system-using-experience-system)
+
+[Features Spec](#features-spec)
+
+[Upgrade System](#upgrade-system)
+
+[Value Requirement Integration](#value-requirement-integration)
+
+[Upgrade Object Behavior](#upgrade-object-behavior)
+
+[Panel & UI Management](#panel-&-ui-management)
+
+[Dynamic and Manual Setup Options](#dynamic-and-manual-setup-options)
+
+#  **Setup the component** {#setup-the-component}
 
 You need to add the component to your project using the Package Manager. Open the Package Manager (Windows \> Package Manager), click on the **\+** icon and select “Add package from git URL...” and enter:  
 [https://github.com/itcOnlineGaming/GA\_25\_P3\_Adrian\_Sokolowski.git?path=/UpgradeSystemComponent/Packages/ie.setu.upgradesystem\#v1.0.3](https://github.com/itcOnlineGaming/GA_25_P3_Adrian_Sokolowski.git?path=/UpgradeSystemComponent/Packages/ie.setu.upgradesystem#v1.0.3)  
 Note that the URL specifies the complete path to the package and a git tag. The package should now be visible in your project.
 
-## **Quick Start**
+## **Quick Start** {#quick-start}
 
 Add `UpgradeSystem` prefab into your Canvas.
 
@@ -22,12 +50,12 @@ Configure `UpgradeSystemController`:
 
 Press Play\!
 
-# **Using the component**
+# **Using the component** {#using-the-component}
 
 1. You have 3 different options for using the component. You are either able to use one of the two premade systems for value gathering ( EconomicSystem or ExperienceSystem ) or you can use the UpgradeSystem on its own and add your own value gathering system.  
 2. If you wish to use one of the premade systems go to **UpgradeSystem \-\> Runtime \-\> Prefabs \-\> EconomicSystem / Experience System** and drag them into the scene Hierarchy and go to **UpgradeSystem \-\> Runtime \-\> Prefabs \-\> UpgradeSystem** and add it to the canvas in your scene.![][image1]
 
-## **Upgrade System Setup**
+## **Upgrade System Setup** {#upgrade-system-setup}
 
 Add the **UpgradeSystem** Prefab from **UpgradeSystem \-\> Runtime \-\> Prefabs** into your Canvas Object in your scene.
 
@@ -77,7 +105,7 @@ This is your first Upgrade Object Element. Which will be created when you run th
 
 Without assigning your own Icons / Sprites this is how the default Upgrade object looks like.
 
-## **Creating Upgrade Objects**
+## **Creating Upgrade Objects** {#creating-upgrade-objects}
 
 **Hide Selling \-** Used to hide the sell button if you dont desire it to be an option with your Value System.  
 **Upgrade Icon \-** Used to identify which upgrade this Upgrade Object corresponds with ( Bow In the Image )  
@@ -97,7 +125,7 @@ I am able to change what the Upgrade Icon looks like in the game, inside of my U
 **Upgrade Cost \-** The Amount of Value it costs for a single Upgrade to be bought.  
 **Upgrade Cost Multiplier \-** The Cost Multiplier of consecutive upgrades in this Upgrade Object.
 
-## **Upgrade Panel**
+## **Upgrade Panel** {#upgrade-panel}
 
 **Upgrade Panel Open \-** This holds the Upgrade Scroll Controller Script. Here you are able to specify the height of the Visible Area where the Upgrade Objects reside and the Content Height, the height where Upgrade Objects are.  
 **![][image9]**
@@ -113,7 +141,7 @@ Using this you are able to have more Upgrade Objects while maintaining how much 
 In the UpgradeHolder GameObject you will see the UpgradeObjects which you created beforehand.  
 ![][image12]
 
-## **Upgrade Object**
+## **Upgrade Object** {#upgrade-object}
 
 If you wish to Manually Add Upgrade Objects Into the Scene.  
 Add the Upgrade System into the Scene as beforehand and leave the Upgrade Data List empty.  
@@ -128,7 +156,7 @@ This happens by using the slider **Total Upgrades** in the Upgrade Object Spawne
 **When not using the Upgrade System to dynamically add Upgrade Objects. You need to assign the Requirement Checker Behaviour script to the Upgrade Objects Manually.**  
 **![][image14]**
 
-## **Upgrade System using Experience System** 
+## **Upgrade System using Experience System** {#upgrade-system-using-experience-system}
 
 From **UpgradeSystem \-\> Runtime \-\> Prefabs** Drag the **ExperienceSystem** prefab into the scene. Using the Experience System, in the ExperienceSystem Prefab Object You will see the Experience System Controller Script which will allow you to specify and modify the following. 
 
@@ -139,15 +167,15 @@ From **UpgradeSystem \-\> Runtime \-\> Prefabs** Drag the **ExperienceSystem** p
 5. You can add your own slider to use for showcasing how much experience the player currently has by dragging it into the Experience Slider variable slot.  
    ![][image15]
 
-# **Features Spec**
+# **Features Spec** {#features-spec}
 
-## **Upgrade System**
+## **Upgrade System** {#upgrade-system}
 
 * Allows adding customizable Upgrade Objects into the game dynamically or manually.
 
 * Each Upgrade Object can represent an upgradeable feature in the game (e.g., Weapon upgrades, Abilities, Skills).
 
-## **Value Requirement Integration**
+## **Value Requirement Integration** {#value-requirement-integration}
 
 * Works with any value system (like Experience Points, Currency, etc.) through the `IUpgradeRequirementChecker` interface.
 
@@ -155,7 +183,7 @@ From **UpgradeSystem \-\> Runtime \-\> Prefabs** Drag the **ExperienceSystem** p
 
 * Requirement checking happens before upgrades or downgrades are allowed.
 
-## **Upgrade Object Behavior**
+## **Upgrade Object Behavior** {#upgrade-object-behavior}
 
 * Each Upgrade Object can have multiple Upgrade Items (e.g., stars) showing upgrade progress.
 
@@ -163,7 +191,7 @@ From **UpgradeSystem \-\> Runtime \-\> Prefabs** Drag the **ExperienceSystem** p
 
 * Upgrades and downgrades trigger customizable Unity Events (`OnBuy`, `OnSell`).
 
-## **Panel & UI Management**
+## **Panel & UI Management** {#panel-&-ui-management}
 
 * Upgrade Panel can scroll dynamically if Upgrade Objects overflow the visible area.
 
@@ -181,7 +209,7 @@ From **UpgradeSystem \-\> Runtime \-\> Prefabs** Drag the **ExperienceSystem** p
 
 * Sell Button visibility can be toggled off for specific upgrades.
 
-## **Dynamic and Manual Setup Options**
+## **Dynamic and Manual Setup Options** {#dynamic-and-manual-setup-options}
 
 * Dynamically create Upgrade Objects through the Upgrade System Controller.
 
