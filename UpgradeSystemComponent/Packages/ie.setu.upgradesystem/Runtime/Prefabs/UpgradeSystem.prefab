@@ -70,7 +70,23 @@ MonoBehaviour:
   UsingExperienceSystem: 1
   UsingEconomicSystem: 0
   requirementCheckerBehaviour: {fileID: 0}
-  upgradeDataList: []
+  upgradeDataList:
+  - upgradeName: 
+    HideSelling: 0
+    UpgradeIcon: {fileID: 0}
+    SellingIcon: {fileID: 0}
+    BuyingIcon: {fileID: 0}
+    FullUpgradeItemIcon: {fileID: 0}
+    EmptyUpgradeItemIcon: {fileID: 0}
+    onBuy:
+      m_PersistentCalls:
+        m_Calls: []
+    onSell:
+      m_PersistentCalls:
+        m_Calls: []
+    MaxUpgradeAmount: 0
+    UpgradeCost: 0
+    UpgradeCostMultiplier: 0
 --- !u!1001 &49350311116615936
 PrefabInstance:
   m_ObjectHideFlags: 0
