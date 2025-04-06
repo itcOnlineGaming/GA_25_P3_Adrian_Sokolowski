@@ -18,6 +18,7 @@ public class UpgradeController : MonoBehaviour
     public Texture EmptyUpgradeItemTexture;
     public int UpgradeCost = 1;
     public int MaxUpgradeAmount = 1;
+    public float UpgradeCostMultiplier = 1.0f;
 
     public Button buyingButton;
     public Button sellingButton;
@@ -73,7 +74,8 @@ public class UpgradeController : MonoBehaviour
             {
                 upgrade.SetFull();
                 requirementChecker?.OnUpgradeBought(UpgradeCost);
-
+                float newUpgradeCost = UpgradeCost * UpgradeCostMultiplier;
+                UpgradeCost = (int)newUpgradeCost;
                 onBuyUpgrade?.Invoke();
                 break;
             }
@@ -98,7 +100,8 @@ public class UpgradeController : MonoBehaviour
             {
                 upgrades[i].SetEmpty();
                 requirementChecker?.OnUpgradeSold(UpgradeCost);
-
+                float newUpgradeCost = UpgradeCost / UpgradeCostMultiplier;
+                UpgradeCost = (int)newUpgradeCost;
                 onSellUpgrade?.Invoke();
                 break;
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IUpgradeRequirementChecker
 {
-    bool CanBuyOrSellUpgrade(int levelCost, bool isBuying); // return true if allowed to buy
-    void OnUpgradeBought(int levelCost); // deduct after buying
-    void OnUpgradeSold(int levelCost);   // refund after selling
+    bool CanBuyOrSellUpgrade(int upgradeCost, bool isBuying); // return true if allowed to buy
+    void OnUpgradeBought(int upgradeCost); // deduct after buying
+    void OnUpgradeSold(int upgradeCost);   // refund after selling
 }

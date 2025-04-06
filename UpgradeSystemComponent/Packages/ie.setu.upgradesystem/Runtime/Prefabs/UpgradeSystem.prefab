@@ -67,33 +67,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeHolder: {fileID: 6804416805268268773}
   upgradeObjectPrefab: {fileID: 4615591581143484305, guid: 9f7c57848a4521b4087ca58b899f00f5, type: 3}
-  upgradeDataList:
-  - upgradeName: Arrow
-    onBuy:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    onSell:
-      m_PersistentCalls:
-        m_Calls: []
-  - upgradeName: Arrow
-    onBuy:
-      m_PersistentCalls:
-        m_Calls: []
-    onSell:
-      m_PersistentCalls:
-        m_Calls: []
+  UsingExperienceSystem: 1
+  UsingEconomicSystem: 0
+  requirementCheckerBehaviour: {fileID: 0}
+  upgradeDataList: []
 --- !u!1001 &49350311116615936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,6 +214,10 @@ PrefabInstance:
     - target: {fileID: 1760994315321371470, guid: bebd58fbe08f19249909e9c1509829ca, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094835425069387104, guid: bebd58fbe08f19249909e9c1509829ca, type: 3}
+      propertyPath: contentHeight
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3135175235524056096, guid: bebd58fbe08f19249909e9c1509829ca, type: 3}
       propertyPath: m_AnchorMax.y
@@ -576,11 +557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8458646270975979188, guid: 0ef2351d95c7489449f289b24f8defcf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 8458646270975979188, guid: 0ef2351d95c7489449f289b24f8defcf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 8458646270975979188, guid: 0ef2351d95c7489449f289b24f8defcf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

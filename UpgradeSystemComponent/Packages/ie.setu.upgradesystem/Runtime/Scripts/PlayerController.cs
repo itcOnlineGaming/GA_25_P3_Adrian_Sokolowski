@@ -28,4 +28,14 @@ public class PlayerController : MonoBehaviour
         // Apply movement using physics
         rb.velocity = moveInput * moveSpeed;
     }
+
+    public void AddSpeed()
+    {
+        moveSpeed++;
+    }
+
+    public void RemoveSpeed()
+    {
+        moveSpeed--;
+    }
 }

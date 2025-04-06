@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class EconomicSystemController : MonoBehaviour
+public class EconomicSystemController : MonoBehaviour, IUpgradeRequirementChecker
 {
     // Single Instance of the System to use in other Scripts
     public static EconomicSystemController Instance { get; private set; }
@@ -11,6 +11,8 @@ public class EconomicSystemController : MonoBehaviour
     public float MaxEconomicValue = 10000.99f;
     public float CurrentEconomicValue = 0;
     public TMP_Text CurrentEconomicValueText;
+
+
 
     void Awake()
     {
@@ -52,4 +54,34 @@ public class EconomicSystemController : MonoBehaviour
         return false;
     }
 
+    public bool CanBuyOrSellUpgrade(int upgradeCost, bool isBuying)
+    {
+        if (isBuying)
+        {
+            // When buying, you must NOT exceed CurrentLevel
+            if (upgradeCost > CurrentEconomicValue)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void OnUpgradeBought(int upgradeCost)
+    {
+        CurrentEconomicValue -= upgradeCost;
+    }
+
+    public void OnUpgradeSold(int upgradeCost)
+    {
+        if (CurrentEconomicValue + upgradeCost > MaxEconomicValue)
+        {
+            CurrentEconomicValue = MaxEconomicValue;
+        }
+        else
+        {
+            CurrentEconomicValue += upgradeCost;
+        }
+    }
 }

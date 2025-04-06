@@ -16,8 +16,9 @@ public class UpgradeData
     public Texture EmptyUpgradeItemIcon;
     public UnityEvent onBuy;
     public UnityEvent onSell;
-    public int UpgradeCost;
     public int MaxUpgradeAmount;
+    public int UpgradeCost;
+    public float UpgradeCostMultiplier = 1.0f;
 }
 
 public class UpgradeSystemController : MonoBehaviour
@@ -70,6 +71,7 @@ public class UpgradeSystemController : MonoBehaviour
             upgrade.hideSelling = data.HideSelling;
             upgrade.UpgradeCost = data.UpgradeCost;
             upgrade.MaxUpgradeAmount = data.MaxUpgradeAmount;
+            upgrade.UpgradeCostMultiplier = data.UpgradeCostMultiplier;
 
             if (data.UpgradeIcon != null)
                 upgrade.UpgradeIconRawImage.texture = data.UpgradeIcon;

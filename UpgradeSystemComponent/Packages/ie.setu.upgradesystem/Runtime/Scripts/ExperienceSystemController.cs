@@ -109,12 +109,12 @@ public class ExperienceSystemController : MonoBehaviour, IUpgradeRequirementChec
         ExperienceSlider.SetValueWithoutNotify(experiencePercentage);
 
     }
-    public bool CanBuyOrSellUpgrade(int levelCost, bool isBuying)
+    public bool CanBuyOrSellUpgrade(int upgradeCost, bool isBuying)
     {
         if (isBuying)
         {
             // When buying, you must NOT exceed CurrentLevel
-            if (levelsUsed + levelCost > CurrentLevel)
+            if (levelsUsed + upgradeCost > CurrentLevel)
             {
                 return false;
             }
@@ -122,7 +122,7 @@ public class ExperienceSystemController : MonoBehaviour, IUpgradeRequirementChec
         else
         {
             // When selling, you must NOT go below zero
-            if (levelsUsed - levelCost < 0)
+            if (levelsUsed - upgradeCost < 0)
             {
                 return false;
             }
@@ -131,15 +131,15 @@ public class ExperienceSystemController : MonoBehaviour, IUpgradeRequirementChec
         return true;
     }
 
-    public void OnUpgradeBought(int levelCost)
+    public void OnUpgradeBought(int upgradeCost)
     {
-        levelsUsed += levelCost;
+        levelsUsed += (int)upgradeCost;
         Debug.Log(levelsUsed);
     }
 
-    public void OnUpgradeSold(int levelCost)
+    public void OnUpgradeSold(int upgradeCost)
     {
-        levelsUsed -= levelCost;
+        levelsUsed -= (int)upgradeCost;
         Debug.Log(levelsUsed);
     }
 }
