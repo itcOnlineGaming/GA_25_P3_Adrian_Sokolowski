@@ -1,5 +1,4 @@
-# Upgrade System
-
+**Upgrade System**  
 This Unity package allows for the addition of a modular and customizable Upgrade System with example Economic and Experience Systems to accompany it.
 
 **Link To Google Doc of Guide**  
@@ -7,7 +6,7 @@ This Unity package allows for the addition of a modular and customizable Upgrade
 
 ## Table of Contents
 - [Setup the Component](#setup-the-component)
-- [Quick Start](#quick-start)
+- [Quick Start](#quick-start-demo)
 - [Using the Component](#using-the-component)
 - [Upgrade System Setup](#upgrade-system-setup)
 - [Creating Upgrade Objects](#creating-upgrade-objects)
@@ -21,24 +20,99 @@ This Unity package allows for the addition of a modular and customizable Upgrade
   - [Panel & UI Management](#panel--ui-management)
   - [Dynamic and Manual Setup Options](#dynamic-and-manual-setup-options)
 
----
+
 #  **Setup the component** {#setup-the-component}
 
 You need to add the component to your project using the Package Manager. Open the Package Manager (Windows \> Package Manager), click on the **\+** icon and select “Add package from git URL...” and enter:  
 [https://github.com/itcOnlineGaming/GA\_25\_P3\_Adrian\_Sokolowski.git?path=/UpgradeSystemComponent/Packages/ie.setu.upgradesystem\#v1.0.3](https://github.com/itcOnlineGaming/GA_25_P3_Adrian_Sokolowski.git?path=/UpgradeSystemComponent/Packages/ie.setu.upgradesystem#v1.0.3)  
 Note that the URL specifies the complete path to the package and a git tag. The package should now be visible in your project.
 
-## **Quick Start** {#quick-start}
+## **Quick Start Demo** {#quick-start-demo}
 
-Add `UpgradeSystem` prefab into your Canvas.
+**1\. Setting Up the Prefab**
 
-Add `ExperienceSystem` prefab if using levels.
+* **Navigate to:**  
+   **`UpgradeSystem -> Runtime -> Prefabs -> ExperienceSystemGuidePrefabs`**  
+   **or**  
+   **`UpgradeSystem -> Runtime -> Prefabs -> EconomicSystemGuidePrefab`.**
 
-Configure `UpgradeSystemController`:
+* **Drag and drop either the ExperienceSystemGuide Prefab or the EconomicSystemGuide Prefab into your Hierarchy.**
 
-* Add Upgrade Data List entries (specify icons, costs, actions).
+## **2\. Configure the Upgrade System**
 
-Press Play\!
+* In the **ExperienceSystemGuide** (or **EconomicSystemGuide**) object, select the **UpgradeSystem** object inside it.
+
+* In the **Upgrade System Controller** script, **add an "Upgrade Data List" object**:
+
+  * You can configure the options inside the Upgrade Data List, or keep the default settings.
+
+![Guide](./Guide%20Files/QuickGuide1.png)
+
+* **Configure an Upgrade Object**:
+
+  * This is where you define things like the upgrade’s cost, effect, icon, etc.  
+  * Increase Max Upgrade Amount ( This will change how many upgrades ths object can have )  
+  * Increase Upgrade Cost ( This will change the cost for the upgrade ( 1 level or 100 money, etc )  
+  * Increase Upgrade Cost Multiplier ( This will determine how much the next upgrade will cost after the first one. ( You can keep it at one if you want it to stay the same )
+
+![Guide](./Guide%20Files/QuickGuide2.png)
+
+**Run The Game**  
+	After you open your new Upgrade Panel. You will see your Upgrade Object look   something like this \-\>
+
+![Guide](./Guide%20Files/QuickGuide3.png)
+
+**3\. Set Up On Buy and On Sell Events**
+
+* Open the **Upgrade Object** settings.
+
+* Add objects to the **On Buy** and **On Sell** lists:
+
+  * Drag and drop your **Player Object** into both lists.
+
+  * In the dropdown menu, select:
+
+    * **AddSpeed** for **On Buy**.
+
+    * **RemoveSpeed** for **On Sell**.
+
+![Guide](./Guide%20Files/QuickGuide4.png)
+
+**4\. Testing the Game**
+
+### **If you are using the Experience Guide:**
+
+* Press **Play** to start the game.
+
+* Move around using **WASD** keys.
+
+* **Collide with Experience Gain objects** on the screen to earn **experience points**.
+
+### **If you are using the Economic Guide:**
+
+* Press **Play** to start the game.
+
+* **Click the "SpawnMoneyBagButton" button** to earn **economic value (money)**.
+
+## **5\. Buying and Selling Upgrades**
+
+* As you **gain experience** or **earn money**, you will be able to **buy upgrades** in your **Upgrade Panel**.
+
+* Clicking **Buy** will:
+
+  * Increase the number of **full stars** (visual indicator of upgrades).
+
+  * Make your **player move faster** (due to the **AddSpeed** function on Buy).
+
+* Clicking **Sell** will:
+
+  * **Decrease** the number of stars.
+
+  * **Reduce** the player's speed (due to the **RemoveSpeed** function on Sell).
+
+  * (If using Economic System Guide) **Give you money back** when you sell upgrades.
+
+![Guide](./Guide%20Files/QuickGuide5.png)
 
 # **Using the component** {#using-the-component}
 
@@ -57,9 +131,9 @@ You are required to have a Value System Script using the IUpgradeRequirementChec
 
 public interface IUpgradeRequirementChecker  
 {  
-	bool CanBuyOrSellUpgrade(int upgradeCost, bool isBuying);  
-	void OnUpgradeBought(int upgradeCost);   
-	void OnUpgradeSold(int upgradeCost);   
+  bool CanBuyOrSellUpgrade(int upgradeCost, bool isBuying);  
+  void OnUpgradeBought(int upgradeCost);   
+  void OnUpgradeSold(int upgradeCost);   
 }
 
 Implement your Value System with these functions in mind.  
@@ -67,23 +141,23 @@ They Control how your upgrade objects interact when adding or removing upgrades 
 
 **Example Implementation from ExperienceSystemController**  
 public bool CanBuyOrSellUpgrade(int upgradeCost, bool isBuying)  
-	if (isBuying)  
-	{  
-    	if (levelsUsed \+ upgradeCost \> CurrentLevel)  
-        		return false;  
-	}  
-	else  
-	{  
-    	if (levelsUsed \- upgradeCost \< 0\)  
-        	return false;  
+  if (isBuying)  
+  {  
+      if (levelsUsed \+ upgradeCost \> CurrentLevel)  
+            return false;  
+  }  
+  else  
+  {  
+      if (levelsUsed \- upgradeCost \< 0\)  
+          return false;  
 }  
-	return true;
+  return true;
 
 public void OnUpgradeBought(int upgradeCost)  
-	levelsUsed \+= (int)upgradeCost;
+  levelsUsed \+= (int)upgradeCost;
 
 public void OnUpgradeSold(int upgradeCost)  
-	levelsUsed \-= (int)upgradeCost;
+  levelsUsed \-= (int)upgradeCost;
 
 The UpgradeSystemController Script in the UpgradeSystem Prefab will find and assign the Requirement Checker Behaviour in the Scene if one is assigned. You may assign it yourself.  
 
