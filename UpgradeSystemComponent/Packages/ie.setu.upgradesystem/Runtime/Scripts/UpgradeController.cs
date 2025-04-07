@@ -9,7 +9,7 @@ public class UpgradeController : MonoBehaviour
     public List<UpgradeObjectController> upgrades = new List<UpgradeObjectController>();
     public UnityEvent onBuyUpgrade;
     public UnityEvent onSellUpgrade;
-    public bool hideSelling = true;
+    public bool hideSelling = false;
 
     public RawImage UpgradeIconRawImage;
     public Image SellingIconRawImage;

@@ -20,6 +20,7 @@ public class UpgradeObjectSpawner: MonoBehaviour
     private void Awake()
     {
         upgradeController = GetComponent<UpgradeController>();
+        upgradeController.MaxUpgradeAmount = totalUpgrades;
     }
 
 #if UNITY_EDITOR
