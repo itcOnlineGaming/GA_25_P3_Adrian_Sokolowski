@@ -16,8 +16,9 @@ public class UpgradeData
     public Texture EmptyUpgradeItemIcon;
     public UnityEvent onBuy;
     public UnityEvent onSell;
-    public int MaxUpgradeAmount;
-    public int UpgradeCost;
+    [Range(1, 24)]
+    public int MaxUpgradeAmount = 1;
+    public int UpgradeCost = 1;
     public float UpgradeCostMultiplier = 1.0f;
 }
 

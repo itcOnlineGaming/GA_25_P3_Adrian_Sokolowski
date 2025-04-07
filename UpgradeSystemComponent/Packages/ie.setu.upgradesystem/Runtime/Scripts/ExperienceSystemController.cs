@@ -133,13 +133,13 @@ public class ExperienceSystemController : MonoBehaviour, IUpgradeRequirementChec
 
     public void OnUpgradeBought(int upgradeCost)
     {
-        levelsUsed += (int)upgradeCost;
+        levelsUsed += upgradeCost;
         Debug.Log(levelsUsed);
     }
 
     public void OnUpgradeSold(int upgradeCost)
     {
-        levelsUsed -= (int)upgradeCost;
+        levelsUsed -= upgradeCost;
         Debug.Log(levelsUsed);
     }
 }
