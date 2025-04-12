@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply movement using physics
         rb.velocity = moveInput * moveSpeed;
     }
 

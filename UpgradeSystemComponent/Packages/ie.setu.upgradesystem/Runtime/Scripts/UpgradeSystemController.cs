@@ -20,6 +20,8 @@ public class UpgradeData
     public int MaxUpgradeAmount = 1;
     public int UpgradeCost = 1;
     public float UpgradeCostMultiplier = 1.0f;
+    [Range(0f, 1f)]
+    public float SellingCostDevaluation = 1.0f;
 }
 
 public class UpgradeSystemController : MonoBehaviour
@@ -27,8 +29,6 @@ public class UpgradeSystemController : MonoBehaviour
     [Header("Setup")]
     public RectTransform upgradeHolder;
     public GameObject upgradeObjectPrefab;
-    public bool UsingExperienceSystem = true;
-    public bool UsingEconomicSystem = false;
     public MonoBehaviour requirementCheckerBehaviour;
 
     [Header("Upgrades")]
@@ -73,7 +73,7 @@ public class UpgradeSystemController : MonoBehaviour
             upgrade.UpgradeCost = data.UpgradeCost;
             upgrade.MaxUpgradeAmount = data.MaxUpgradeAmount;
             upgrade.UpgradeCostMultiplier = data.UpgradeCostMultiplier;
-
+            upgrade.SellingCostDevaluation = data.SellingCostDevaluation;
             if (data.UpgradeIcon != null)
                 upgrade.UpgradeIconRawImage.texture = data.UpgradeIcon;
             if (data.BuyingIcon != null)

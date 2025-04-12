@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UpgradeObjectController : MonoBehaviour
 {
-    public int upgradeIndex; // This will store its position
+    public int upgradeIndex;
     public bool isBought = false;
 
     public RawImage rawImage;

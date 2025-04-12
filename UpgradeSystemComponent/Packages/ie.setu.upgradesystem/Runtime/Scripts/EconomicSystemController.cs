@@ -71,6 +71,7 @@ public class EconomicSystemController : MonoBehaviour, IUpgradeRequirementChecke
     public void OnUpgradeBought(int upgradeCost)
     {
         CurrentEconomicValue -= upgradeCost;
+        CurrentEconomicValueText.text = CurrentEconomicValue.ToString();
     }
 
     public void OnUpgradeSold(int upgradeCost)
@@ -78,10 +79,12 @@ public class EconomicSystemController : MonoBehaviour, IUpgradeRequirementChecke
         if (CurrentEconomicValue + upgradeCost > MaxEconomicValue)
         {
             CurrentEconomicValue = MaxEconomicValue;
+            CurrentEconomicValueText.text = CurrentEconomicValue.ToString();
         }
         else
         {
             CurrentEconomicValue += upgradeCost;
+            CurrentEconomicValueText.text = CurrentEconomicValue.ToString();
         }
     }
 }
